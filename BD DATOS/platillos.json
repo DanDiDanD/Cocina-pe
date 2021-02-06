@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "600620b34a40a644f4bf162b"
   },
-  "ruta_imagen": "",
+  "ruta_imagen": "https://t1.rg.ltmcdn.com/es/images/7/4/1/ceviche_peruano_18147_600_square.jpg",
   "categoria": [
     "costeño",
     "marino"
@@ -15,7 +15,7 @@
   "_id": {
     "$oid": "600621204a40a644f4bf162c"
   },
-  "ruta_imagen": "",
+  "ruta_imagen": "https://recetinas.com/wp-content/uploads/2019/10/lomo-saltado.jpg",
   "categoria": [
     "criollo"
   ],
@@ -27,7 +27,7 @@
   "_id": {
     "$oid": "600621564a40a644f4bf162d"
   },
-  "ruta_imagen": "",
+  "ruta_imagen": "https://cdn.kiwilimon.com/recetaimagen/15343/th5-640x426-7663.jpg",
   "categoria": [
     "marino"
   ],
@@ -209,17 +209,6 @@
     "marino"
   ],
   "nombre": "o",
-  "descripcion": "aaa",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "600f7c46b5c9f23054ad2b72"
-  },
-  "ruta_imagen": "",
-  "categoria": [
-    "marino"
-  ],
-  "nombre": "p",
   "descripcion": "aaa",
   "__v": 0
 },{
