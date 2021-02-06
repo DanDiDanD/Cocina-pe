@@ -10,7 +10,7 @@ import {
   HomeOutlined,
   UserOutlined,
   ScheduleOutlined,
-  PoweroffOutlined,
+  LoginOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
 import './BasicLayout.scss'
@@ -39,7 +39,7 @@ export default function BasicLayout(props) {
                     <Button
                       className="header-button"
                       type="primary"
-                      icon={<PoweroffOutlined />}
+                      icon={<LoginOutlined />}
                       href={`/login`}
                     >
                       Ingresar
@@ -50,7 +50,10 @@ export default function BasicLayout(props) {
               <Content className="layout-basic__content">
                   <LoadRoutes routes={routes}/>
               </Content>
-              <Footer className="layout-basic__footer">Footer</Footer>
+              <Footer className="layout-basic__footer">
+                Politicas de privacidad<br/>
+
+              </Footer>
           </Layout>
       </Layout>
     )

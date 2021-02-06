@@ -1,6 +1,8 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { Link } from "react-router-dom";
+import { Image } from 'antd';
+import logo from '../../assets/img/png/logo.png';
 import './MenuTop.scss'
 import {
     HomeOutlined,
@@ -18,7 +20,8 @@ export default function MenuTop() {
 
     return (
         <>
-            <h1 className="menu-top__logo">COCINA PE</h1>
+            <Image src={logo} className="menu-top__img-logo"/>
+
             <Menu theme="dark" mode="horizontal" style={{color: "red"}, {backgroundColor: "#dd621b"}}>
                 <Menu.Item className="menu-top__menu-item" key={RUTAS.home}>
                     <Link to={RUTAS.home}>Inicio</Link>

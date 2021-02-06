@@ -51,11 +51,11 @@ export default function MainLayout(props) {
               <Header className="layout-main__header">
                   <MenuTopMain auth={auth} onLogOut={onLogOut}/>
               </Header>
-              <div className="layout-main__header-brown"></div>
+              <div className="layout-main__header"></div>
               <Content className="layout-main__content">
                   <LoadRoutes routes={routes}/>
               </Content>
-              <Footer className="layout-main__footer">Footer</Footer>
+              
           </Layout>
       </Layout>
     );

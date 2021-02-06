@@ -47,12 +47,12 @@ export default function Login({ history }) {
       <Content className="login-content">
         <div className="login-form">
           <Title style={{ textAlign: "center" }} level={3}>
-            Cocina Pe
+            Inicia Sesi&oacute;n
           </Title>
           <br />
           <Form {...layout} name="basic" onFinish={onFinish}>
             <Form.Item
-              label="Correo electronico"
+              label="Correo"
               name="correo"
               rules={[{ required: true, message: "Usuario requerido." }]}
             >
@@ -67,8 +67,8 @@ export default function Login({ history }) {
               <Input.Password />
             </Form.Item>
             <br />
-            <Form.Item {...tailLayout}>
-              <Button type="primary" htmlType="submit">
+            <Form.Item>
+              <Button type="primary" htmlType="submit" block>
                 Ingresar
               </Button>
             </Form.Item>
