@@ -75,8 +75,6 @@ export default function Recetas() {
   useEffect(() => {
     const recetaFav = async () => {
       const response = await isRecetaFavorita({id_usuario: auth.data._id, id_receta: id})
-      console.log(response.data);
-       
       setIsFavorito(response.data);
       setReloadFavorito(false)
     }
@@ -129,25 +127,42 @@ export default function Recetas() {
         <Col span={23}>
           <List
             loading={isLoading}
-            itemLayout="horizontal"
+            itemLayout="vertical"
             dataSource={baseDataReceta}
             renderItem={item => (
-              <List.Item actions={[ isFavorito ? <Button
+              <List.Item 
+              // actions={[ isFavorito ? <Button
+              //   type="danger"
+              //   icon={<HeartTwoTone twoToneColor="#eb2f96" />}
+              //   onClick={() => modalRecetaFav()}
+              // /> :
+              //   <Button
+              //     type="dashed"
+              //     icon={<HeartTwoTone twoToneColor="#eb2f96" />}
+              //     onClick={() => modalRecetaFav()}
+              //   />]}
+                extra = {
+                  isFavorito ? <> <br/> <Button
                 type="danger"
                 icon={<HeartTwoTone twoToneColor="#eb2f96" />}
                 onClick={() => modalRecetaFav()}
-              /> :
+              /> </>:
+                  <>
+                  <br/>
                 <Button
                   type="dashed"
                   icon={<HeartTwoTone twoToneColor="#eb2f96" />}
                   onClick={() => modalRecetaFav()}
-                />]}
+                />
+                </>
+                }
               >
                 <List.Item.Meta className='list-item-meta-receta'
                   avatar={<Avatar size={64} src={item.usuario.url_avatar} />}
                   title={item.nombre}
                   description={<>Por: <a href={`/cocina/usuarios/${item._id}`}>{item.usuario.nombres + ' ' + item.usuario.apellido_paterno + ' ' +  (item.usuario.apellido_materno.length != 0 ? item.usuario.apellido_materno : '')}</a></>}
                 />
+                {item.descripcion}
               </List.Item>
             )}
           />

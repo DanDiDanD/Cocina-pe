@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu } from 'antd';
 import { Link } from "react-router-dom";
 import { Image } from 'antd';
-import logo from '../../assets/img/png/logo.png';
+import logo from '../../assets/img/png/cocinape.png';
 import './MenuTop.scss'
 import {
     HomeOutlined,

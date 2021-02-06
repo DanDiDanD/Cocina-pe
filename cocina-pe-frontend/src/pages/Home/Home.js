@@ -106,7 +106,7 @@ export default function Home() {
                   >
                     <Meta
                     title={platillos[indice_card1].nombre}
-                    description={platillos[indice_card1].descripcion}
+                    description={`${platillos[indice_card1].descripcion.substring(0,255)}...`}
                     />
                 </Card>
               </div>
@@ -136,7 +136,7 @@ export default function Home() {
                   >
                     <Meta
                     title={platillos[indice_card2].nombre}
-                    description={platillos[indice_card2].descripcion}
+                    description={`${platillos[indice_card2].descripcion.substring(0,255)}...`}
                     />
                 </Card>
               </div>

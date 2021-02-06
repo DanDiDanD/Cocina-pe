@@ -27,7 +27,7 @@ exports.agregarPlatillo = async (params) => {
 exports.listarPlatillos = async () => {
     let platilloDB
     try{
-        platilloDB = await Platillo.find()
+        platilloDB = await Platillo.find().sort({nombre: 1})
         return platilloDB
     }catch(error){
         console.log('Error: ', error.message)

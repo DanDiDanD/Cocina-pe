@@ -4,7 +4,7 @@ import { HEADERS } from "../config/constantes";
 
 export const login = async (params) => {
     try {
-        const respuesta = await clienteAxios.post('/usuarios/login', params, HEADERS);
+        const respuesta = await clienteAxios.post('/usuarios/login', params);
         return respuesta.data;
     } catch (error) {
         return error.response.data;
@@ -13,7 +13,7 @@ export const login = async (params) => {
 
 export const registrarUsuario = async (params) => {
     try {
-        const respuesta = await clienteAxios.post('/usuarios/', params, HEADERS);
+        const respuesta = await clienteAxios.post('/usuarios/', params);
         return respuesta.data;
     } catch (error) {
         return error.response.data;

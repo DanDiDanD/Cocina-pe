@@ -1,17 +1,15 @@
 import React, {useState, useEffect} from "react";
-import { Form, Input, Button, notification, Select, InputNumber, Divider, Upload, message, Space, Checkbox, Row, Col, Switch } from "antd";
+import { Form, Input, Button, notification, Select, InputNumber, DatePicker, Divider, Upload, message, Space, Checkbox, Row, Col, Switch, Radio } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { modificarReceta } from "../../../api/receta";
-import "./AddPasoPreparacionModal.scss";
+import { registrarUsuario } from "../../api/usuarios";
+import "./RegistroModal.scss";
 
 
 export default function AddIngredienteModal(props) {
   const { TextArea } = Input;
   const [imageUrl, setImageUrl] = useState(null);
   const [fileList, setFileList] = useState([]);
-  const [ingredientes, setIngredientes] = useState([]);
-  const [reloadSelect, setReloadSelect] = useState([]);
-  const { setIsVisibleModal, setReload, id_receta, baseDataPreparacion } = props;
+  const { setIsVisibleModal, login } = props;
 
   const onChange =  async ({ fileList: newFileList }) => {
     setFileList(newFileList);
@@ -63,20 +61,23 @@ export default function AddIngredienteModal(props) {
   };
 
   const onFinish = async (values) => {
-    values.url_imagen = localStorage.getItem('url_imagen_base64')
+    values.url_avatar = localStorage.getItem('url_imagen_base64')
     console.log(values);
-    baseDataPreparacion.push(values)
-    const obj = {
-        preparacion: baseDataPreparacion
-    }
-    const response = await modificarReceta(id_receta,obj);
+
+    const response = await registrarUsuario(values);
+    console.log(response);
     
     if (response.code === 200) {
         notification["success"]({
         message: "Éxito",
         description: response.message,
         });
-        setReload(true)
+        const obj = {
+            correo: values.correo,
+            password: values.password,
+        }
+        await login(obj);
+
 
     } else if (response.code === 400) {
         notification["error"]({
@@ -110,32 +111,117 @@ export default function AddIngredienteModal(props) {
     <>
     <Form {...formItemLayout} name="basic" onFinish={onFinish}>
 
-      <Form.Item label="Detalle del paso:"  name="detalle" rules={[{ required: true, message: 'Describa el paso a detalles:' }]}>
-        <TextArea rows={5}/>
-      </Form.Item>
+    <Form.Item
+        label="Nombre:"
+        name="nombres"
+        rules={[ {required: true, message: "Porfavor ingresa su nombre.",},
+        ]}
+      >
+        <Input />
+    </Form.Item>
+
+    <Form.Item
+        label="Apellidos:"
+        name="apellido_paterno"
+        rules={[ {required: true, message: "Por favor ingrese su nombre.",},
+        ]}
+      >
+        <Input />
+    </Form.Item>
 
       <Form.Item
-              label="Imagen principal:"
-              name="url_imagen"
+        name="correo"
+        label="E-mail"
+        rules={[
+          {
+            type: 'email',
+            message: 'El E-mail no es válido',
+          },
+          {
+            required: true,
+            message: 'Por favor ingruese su E-mail',
+          },
+        ]}
+      >
+    <Input />
+    </Form.Item>
+
+    <Form.Item
+        name="password"
+        label="Password"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your password!',
+          },
+        ]}
+        hasFeedback
+      >
+        <Input.Password />
+      </Form.Item>
+
+    <Form.Item
+        name="confirm"
+        label="Confirm Password"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: 'Please confirm your password!',
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject('The two passwords that you entered do not match!');
+            },
+          }),
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+    <Form.Item name="sexo" label="Sexo">
+        <Radio.Group>
+          <Radio value="Hombre">Hombre</Radio>
+          <Radio value="Mujer">Mujer</Radio>
+          <Radio value="Otro">Otro tipo de clasificación</Radio>
+        </Radio.Group>
+      </Form.Item>
+
+
+    
+
+    <Form.Item name="fecha_nacimiento "label="Fecha de nacimiento">
+          <DatePicker />
+    </Form.Item>
+
+
+
+      <Form.Item
+              label="Foto de perfil:"
+              name="url_avatar"
+      >
+            <Upload
+            customRequest={dummyRequest}
+            listType="picture-card"
+            fileList={fileList}
+            beforeUpload={beforeUpload}
+            showUploadList={true}
+            onChange={onChange}
+            onPreview={onPreview}
             >
-              <Upload
-                customRequest={dummyRequest}
-                listType="picture-card"
-                fileList={fileList}
-                beforeUpload={beforeUpload}
-                showUploadList={true}
-                onChange={onChange}
-                onPreview={onPreview}
-              >
-                {fileList.length < 1 && '+ Upload'}
-              </Upload>
+            {fileList.length < 1 && '+ Upload'}
+            </Upload>
 
         </Form.Item>
 
       <Form.Item className="site-page-button">
         <div className="site-page-button">
           <Button type="primary" htmlType="submit">
-            Guardar
+            ¡Registrame!
           </Button>
         </div>
       </Form.Item>

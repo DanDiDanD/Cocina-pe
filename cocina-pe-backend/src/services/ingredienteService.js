@@ -27,7 +27,7 @@ exports.agregarIngrediente = async (params) => {
 exports.listarIngredientes = async () => {
     let ingredienteDB
     try{
-        ingredienteDB = await Ingrediente.find()
+        ingredienteDB = await Ingrediente.find().sort({nombre: 1})
         return ingredienteDB
     }catch(error){
         console.log('Error: ', error.message)

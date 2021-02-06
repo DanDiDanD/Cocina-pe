@@ -283,6 +283,7 @@ export default function Perfil() {
           title="Mi perfil"
         >
           <Tabs defaultActiveKey="1" >
+          
           <TabPane tab="Mis favoritos" key="1">
             <Row>
               <Col lg={1} />
@@ -293,6 +294,7 @@ export default function Perfil() {
                   enterButton
                   onSearch={searchFavoritos}
                 />
+                {auth.data.is_premium ? 
                 <Table
                   size="middle"
                   columns={columnsFavoritos}
@@ -301,7 +303,8 @@ export default function Perfil() {
                   }
                   rowKey={(record) => record._id}
                   loading={isLoading}
-                />
+                /> :
+                <><h1>Necesitas ser usuario premium para poder ver tus recetas favoritas.</h1></>}
               </Col>
               <Col lg={1} />
             </Row>
@@ -329,9 +332,6 @@ export default function Perfil() {
               </Col>
               <Col lg={1} />
               </Row>
-          </TabPane>
-          <TabPane tab="Mi perfil" key="3">
-            Content of Tab Pane 3
           </TabPane>
         </Tabs>
         </PageHeader>
